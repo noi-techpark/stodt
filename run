@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+base_command="docker run -v $(pwd):/app --rm"
+
+__build="docker build -t stodt ."
+__download="$base_command -it stodt python download.py"
+__python="$base_command -it stodt python"
+__app="$base_command -it -p 5000:5000 stodt bash start.sh"
+__to_numpy="$base_command -t stodt python to-numpy-data.py"
+__train="$base_command -t stodt python train.py"
+__predict="$base_command -t stodt python predict.py"
+__board="$base_command -t -p 8888:8888 -p 6006:6006 stodt tensorboard --logdir=./data/board --host=0.0.0.0"
+
+command=$1
+shift
+
+if [ -z "$(eval echo \$__$command)" ]; then
+    echo "invalid command"
+    exit
+fi
+eval "\$__$command $@"

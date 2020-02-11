@@ -1,0 +1,98 @@
+{
+    "data_dir": "./data",
+    "download": {
+        "time_from": "2019-02-20",
+        "time_to": "2020-01-01",
+        "days_between_calls": 1
+    },
+    "scale": {
+        "minimum_period": 300
+    },
+    "neural-network": {
+        "weight_dir": "weights",
+        "dataset_splits": 3,
+        "target_data_type": "PM2.5 - Polveri sottili",
+        "target_data_type_max_value": 100,
+        "time_frame_size": 1800,
+        "time_series_length": 48,
+        "batch_size": 128,
+        "units": 100,
+        "epochs": 10,
+        "lookup_window": 48,
+        "train_consecutive_batches": 8,
+        "validation_consecutive_batches": 2,
+        "reload_weights": false
+    },
+    "categories": [{
+        "category": "bluetooth",
+        "allowed_data_types": [
+            {
+                "name": "Bluetooth Count record",
+                "mode": "fraction"
+            },
+            {
+                "name": "heavy vehicle",
+                "mode": "fraction"
+            },
+            {
+                "name": "light vehicle",
+                "mode": "fraction"
+            }
+        ]
+    },
+    {
+        "category": "meteorology",
+        "allowed_data_types": [
+            {
+                "name": "air-humidity",
+                "mode": "mean"
+            },
+            {
+                "name": "air-temperature",
+                "mode": "mean"
+            },
+            {
+                "name": "precipitation",
+                "mode": "fraction"
+            },
+            {
+                "name": "wind-speed",
+                "mode": "mean"
+            },
+            {
+                "name": "atmospheric-pressure-reduced",
+                "mode": "mean"
+            }
+        ]
+    },
+    {
+        "category": "environment",
+        "allowed_data_types": [
+            {
+                "name": "CO - Monossido di carbonio",
+                "mode": "mean"
+            },
+            {
+                "name": "NO2 - Ossidi di azoto",
+                "mode": "mean"
+            },
+            {
+                "name": "PM2.5 - Polveri sottili",
+                "mode": "mean"
+            },
+            {
+                "name": "PM10 - Polveri sottili",
+                "mode": "mean"
+            }
+        ]
+    },
+    {
+        "category": "parking",
+        "allowed_data_types": [
+            {
+                "name": "occupied",
+                "mode": "mean"
+            }
+        ]
+    }]
+}

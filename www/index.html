@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>STODT</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Poppins|Raleway&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+      color: #333;
+      font-family: 'Montserrat', sans-serif;
+      font-family: 'Raleway', sans-serif;
+      font-family: 'Poppins', sans-serif;
+      background-image: url(https://pixinvent.com/materialize-material-design-admin-template/landing/img/bg-img/bg.png);
+      background-attachment: fixed;
+    }
+
+    body {
+      padding: 2rem;
+    }
+
+    main {
+      display: block;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    header li {
+      display: inline-block;
+      text-decoration: underline;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      padding-bottom: 2.5rem;
+    }
+
+    header h1 i {
+      font-style: normal;
+      text-decoration: underline;
+      text-align: center;
+    }
+
+    section {
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    h1 input {
+      font-size: 24px;
+      font-family: 'Poppins', sans-serif;
+      vertical-align: initial;
+      border: none;
+      padding: 0.5rem 1rem;
+      outline: none;
+      display: inline-block;
+      width: 200px;
+      text-align: center;
+      background: transparent;
+    }
+
+    input::-webkit-inner-spin-button {
+        display: none;
+    }
+    input::-webkit-clear-button {
+      display: none;
+    }
+    a {
+      color: #333 !important;
+    }
+    section h1 {
+      margin-bottom: 0;
+    }
+    section a {
+      display: block;
+      padding-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1><i>S</i>outh <i>T</i>yrol <i>O</i>pen <i>D</i>ata <i>T</i>angle</h1>
+    </header>
+    <section id="forecast" class="visible">
+      <h1># DAILY POLLUTION FORECAST <input type="date" id="forecastDate" onchange="drawForecast(event)"></h1>
+      <a href="#" id="forecastUrl"></a>
+      <div id="forecastChart" style="height: 400px"></div>
+      <div id="forecastError"></div>
+    </section>
+    <section id="history" class="visible">
+      <h1># PREDICTION HISTORY <input type="date" id="historyFromDate" onchange="drawHistory(event)"> → <input type="date" id="historyToDate" onchange="drawHistory(event)"></h1>
+      <a href="#" id="historyUrl"></a>
+      <div id="historyChart" style="height: 400px"></div>
+    </section>
+    <section id="history" class="visible">
+      <h1># UDATE MANUALLY</h1>
+      <a href="https://stodt.herokuapp.com/manual-update">https://stodt.herokuapp.com/manual-update</a>
+    </section>
+    <section id="about">
+      <h1>about stodt</h1>
+      reference to repository & stuff like that
+    </section>
+  </main>
+
+  <script>
+    const dt = new Date()
+    dt.setDate( dt.getDate() - 4 )
+
+    document.getElementById('forecastDate').value = new Date().toISOString().substr(0, 10)
+    document.getElementById('historyFromDate').value = dt.toISOString().substr(0, 10)
+    document.getElementById('historyToDate').value = new Date().toISOString().substr(0, 10)
+
+    google.charts.load('current', { packages: ['corechart', 'bar'] })
+    google.charts.setOnLoadCallback(() => {
+      console.log('chart library loaded')
+      drawForecast()
+      drawHistory()
+    })
+
+    function renderErrorTo (element) {
+      return (error) => element.innerHTML = '<span class="error">No data available for selected date</span>'
+    }
+
+    function drawForecast (event) {
+      window.forecastChart.innerHTML = ''
+      window.forecastUrl.href = window.forecastUrl.innerText = `https://stodt.herokuapp.com/predict?date=${window.forecastDate.value}`
+      window.fetch(window.forecastUrl.href)
+      .then(response => response.json())
+      .then(renderForecastChart)
+      .catch(renderErrorTo(window.forecastChart))
+
+      function renderForecastChart ({labels, outputs, timestamps}) {
+        const data = new google.visualization.DataTable()
+
+        data.addColumn('datetime', 'Time of Day')
+        data.addColumn('number', 'Pollution')
+        data.addColumn({type: 'string', role: 'style'})
+
+        let min = Number.POSITIVE_INFINITY
+        let max = Number.NEGATIVE_INFINITY
+
+        timestamps.forEach((ts, i) => {
+          if (min > outputs[i]) min = outputs[i]
+          if (max < outputs[i]) max = outputs[i]
+        })
+
+        data.addRows(
+          timestamps.map((ts, i) => [
+            new Date(ts),
+            outputs[i],
+            outputs[i] === max ? 'red' : (outputs[i] === min ? 'green' : undefined)
+          ])
+        )
+
+        new google.visualization.ColumnChart(window.forecastChart)
+          .draw(data, {
+          legend: {
+              position: 'none'
+            },
+            trendlines: {
+              0: {type: 'exponential', lineWidth: 10, opacity: .3}
+            },
+            hAxis: {
+              title: 'Time of Day',
+              format: 'HH:mm',
+              gridlines: {
+                color: 'transparent'
+              }
+            },
+            vAxis: {
+              title: 'Rating (scale of 0-1)',
+              gridlines: {
+                color: 'transparent'
+              }
+            }
+          })
+      }
+    }
+
+    function drawHistory (event) {
+      window.historyChart.innerHTML = ''
+      window.historyUrl.href = window.historyUrl.innerText = `https://stodt.herokuapp.com/history?start=${window.historyFromDate.value}&end=${window.historyToDate.value}`
+      window.fetch(window.historyUrl.href)
+        .then(response => response.json())
+        .then(renderHistoryChart)
+        .catch(renderErrorTo(window.historyChart))
+
+      function renderHistoryChart ({timestamps, labels, outputs}) {
+        const data = new google.visualization.DataTable()
+
+        data.addColumn('datetime', 'Time of Day')
+        data.addColumn('number', 'Measured')
+        data.addColumn('number', 'Forecast')
+        data.addColumn({type: 'string', role: 'style'})
+
+        data.addRows(
+          timestamps.map((ts, i) => [new Date(ts), labels[i], outputs[i], undefined])
+        )
+
+        new google.visualization.LineChart(window.historyChart)
+          .draw(data, {
+            curveType: 'function',
+            legend: { position: 'bottom' }
+          })
+      }
+    }
+  </script>
+</body>
+</html>
