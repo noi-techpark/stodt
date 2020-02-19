@@ -94,5 +94,14 @@
                 "mode": "mean"
             }
         ]
-    }]
+    }],
+    "app": {
+        "port": 5000,
+        "endpoints": {
+            "root": "/",
+            "prediction": "/predict",
+            "history": "/history",
+            "update": "/manual-update"
+        }
+    }
 }
