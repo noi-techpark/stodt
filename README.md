@@ -198,3 +198,7 @@ The application server responds to the following routes:
     - outputs: the predicted data by the neural network 
     - timestamps: ordered list of timestamps matching the prediction
 - `/predict?start=yyyy-mm-dd&end=yyyy-mm-dd`: returns a json similar to the one described above for the selected date range.
+
+#### Files
+
+We already provide the weights, means and stds (all in the weights folder) as a result of our training of the model so it is not needed to run the download, to_numpy and train steps to go live.
