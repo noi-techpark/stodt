@@ -14,16 +14,18 @@ from modules.utilities import time_frames_from
 with open('./config.json') as configfile:
     config = json.loads("".join(configfile.readlines()))
 neural_network_config = config["neural-network"]
+app_config = config["app"]
+endpoints = app_config["endpoints"]
 
-port = int(environ.get("PORT", 5000))
+port = int(environ.get("PORT", app_config["port"]))
 app = Flask(__name__, static_url_path='', static_folder='www')
 CORS(app)
 
-@app.route('/')
+@app.route(endpoints["root"])
 def root():
     return app.send_static_file('index.html')
 
-@app.route('/predict')
+@app.route(endpoints["prediction"])
 def predict():
     datestring = request.args.get("date")
 
@@ -40,7 +42,7 @@ def predict():
                         outputs=outputs))
 
 
-@app.route('/history')
+@app.route(endpoints["history"])
 def history():
     end = datetime.strptime(request.args.get("end"), '%Y-%m-%d')
     start = datetime.strptime(request.args.get("start"), '%Y-%m-%d')
@@ -54,7 +56,7 @@ def history():
                         outputs=outputs))
 
 
-@app.route("/manual-update")
+@app.route(endpoints["update"])
 def update():
     if os.path.exists("/tmp/update-running"):
         return "Already updating..."

@@ -111,8 +111,8 @@
       <div id="historyChart" style="height: 400px"></div>
     </section>
     <section id="history" class="visible">
-      <h1># UDATE MANUALLY</h1>
-      <a href="https://stodt.herokuapp.com/manual-update">https://stodt.herokuapp.com/manual-update</a>
+      <h1># UPDATE MANUALLY</h1>
+      <a href="http://localhost:5000/manual-update">http://localhost:5000/manual-update</a>
     </section>
     <section id="about">
       <h1>about stodt</h1>
@@ -141,7 +141,7 @@
 
     function drawForecast (event) {
       window.forecastChart.innerHTML = ''
-      window.forecastUrl.href = window.forecastUrl.innerText = `https://stodt.herokuapp.com/predict?date=${window.forecastDate.value}`
+      window.forecastUrl.href = window.forecastUrl.innerText = `http://localhost:5000/predict?date=${window.forecastDate.value}`
       window.fetch(window.forecastUrl.href)
       .then(response => response.json())
       .then(renderForecastChart)
@@ -197,7 +197,7 @@
 
     function drawHistory (event) {
       window.historyChart.innerHTML = ''
-      window.historyUrl.href = window.historyUrl.innerText = `https://stodt.herokuapp.com/history?start=${window.historyFromDate.value}&end=${window.historyToDate.value}`
+      window.historyUrl.href = window.historyUrl.innerText = `http://localhost:5000/history?start=${window.historyFromDate.value}&end=${window.historyToDate.value}`
       window.fetch(window.historyUrl.href)
         .then(response => response.json())
         .then(renderHistoryChart)
