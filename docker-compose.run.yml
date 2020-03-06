@@ -5,3 +5,8 @@ services:
     command: "bash start.sh"
     ports:
       - "1040:5000"
+    healthcheck:
+      test: curl --fail -s http://localhost:5000/ || exit 1
+      interval: 3s
+      timeout: 10s
+      retries: 3
