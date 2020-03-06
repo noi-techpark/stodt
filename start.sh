@@ -1,2 +1,2 @@
 cron
-python /app/app.py
+python /code/app.py

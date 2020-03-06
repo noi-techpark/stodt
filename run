@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-base_command="docker run -v $(pwd):/app --rm"
+base_command="docker run -v $(pwd):/code --rm"
 
 __build="docker build -t stodt ."
 __download="$base_command -it stodt python download.py"

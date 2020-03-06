@@ -60,7 +60,7 @@ def history():
 def update():
     if os.path.exists("/tmp/update-running"):
         return "Already updating..."
-    Popen(["bash", "/app/update.sh"])
+    Popen(["bash", "/code/update.sh"])
     return "Update started."
 
 
