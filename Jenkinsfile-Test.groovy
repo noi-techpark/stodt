@@ -9,6 +9,7 @@ pipeline {
         DOCKER_SERVER_DIRECTORY = "/var/docker/davinci-stodt"
 		DOCKER_IMAGE = '755952719952.dkr.ecr.eu-west-1.amazonaws.com/davinci-stodt'
 		DOCKER_TAG = "test-$BUILD_NUMBER"
+		HOST = "https://stodt.davinci.testingmachine.eu"
     }
 
 	stages {
@@ -20,6 +21,7 @@ pipeline {
                 	echo 'COMPOSE_PROJECT_NAME=${DOCKER_PROJECT_NAME}' >> .env
                 	echo 'DOCKER_IMAGE=${DOCKER_IMAGE}' >> .env
                 	echo 'DOCKER_TAG=${DOCKER_TAG}' >> .env
+					echo 'HOST=${HOST}' >> .env
 				"""
             }
         }
