@@ -1,0 +1,7 @@
+version: "3.4"
+services:
+  app:
+    image: ${DOCKER_IMAGE}:${DOCKER_TAG}
+    command: "bash start.sh"
+    ports:
+      - "1040:5000"
