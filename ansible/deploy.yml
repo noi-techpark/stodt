@@ -10,4 +10,5 @@
             remote: docker-compose.yml
           - local: ../.env
             remote: .env
+        docker_deployment_shared_files: ["data/"]
         docker_deployment_aws_ecr_repository: 755952719952.dkr.ecr.eu-west-1.amazonaws.com
