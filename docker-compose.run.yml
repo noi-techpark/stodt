@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     command: "bash start.sh"
     environment:
+      SERVER_PORT: ${SERVER_PORT}
       HOST: ${HOST}
     ports:
       - ${SERVER_PORT}:5000
