@@ -2,8 +2,9 @@ version: "3.4"
 services:
   app:
     image: ${DOCKER_IMAGE}:${DOCKER_TAG}
+    restart: unless-stopped
     command: "bash start.sh"
     environment:
       HOST: ${HOST}
     ports:
-      - "1040:5000"
+      - "${SERVER_PORT}:5000"
