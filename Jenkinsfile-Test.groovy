@@ -5,7 +5,6 @@ pipeline {
 		AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
 		AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
 		DOCKER_PROJECT_NAME = "davinci-stodt"
-		DOCKER_SERVER_URL = "docker02.testingmachine.eu"
 		DOCKER_IMAGE = '755952719952.dkr.ecr.eu-west-1.amazonaws.com/davinci-stodt'
 		DOCKER_TAG = "test-$BUILD_NUMBER"
 		SERVER_PORT = "1040"
