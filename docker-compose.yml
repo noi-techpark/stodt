@@ -11,4 +11,4 @@ services:
     command: "python /code/app.py"
     tty: true
     ports:
-      - "8999:5000"
+      - 8999:5000
