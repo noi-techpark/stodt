@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        dockerfile {
-            filename 'Dockerfile'
-            additionalBuildArgs '--build-arg JENKINS_USER_ID=`id -u jenkins` --build-arg JENKINS_GROUP_ID=`id -g jenkins`'
-        }
-    }
+    any
 
     environment {
 		AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
