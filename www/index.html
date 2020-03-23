@@ -138,7 +138,7 @@
     const dateTo = new Date()
     dateTo.setDate( dateTo.getDate() - 2 )
 
-    document.getElementById('forecastDate').value = new Date().toISOString().substr(0, 10)
+    document.getElementById('forecastDate').value = dateTo.toISOString().substr(0, 10)
     document.getElementById('historyFromDate').value = dateFrom.toISOString().substr(0, 10)
     document.getElementById('historyToDate').value = dateTo.toISOString().substr(0, 10)
 
