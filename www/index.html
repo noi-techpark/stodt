@@ -46,13 +46,18 @@
 
     header h1 {
       font-size: 3rem;
-      padding-bottom: 2.5rem;
+      padding-bottom: 0.5rem;
     }
 
     header h1 i {
       font-style: normal;
       text-decoration: underline;
       text-align: center;
+    }
+
+    header p {
+        width: 800px;
+        margin: 1.5rem auto;
     }
 
     section {
@@ -98,7 +103,17 @@
   <main>
     <header>
       <h1><i>S</i>outh <i>T</i>yrol <i>O</i>pen <i>D</i>ata <i>T</i>angle</h1>
+      <img src="efre-fesr-logo.jpg"/>
+      <p>
+        STODT is an AI model to give useful information about pollution in the
+        city of <a href="https://en.wikipedia.org/wiki/Bolzano">Bolzano</a>, to
+        better plan outdoor activities for instance. We developed it during the
+        <a href="https://davinci.bz.it">FESR project DAVINCI</a>. Source code
+        can be found on Github <a
+        href="https://github.com/noi-techpark/stodt">https://github.com/noi-techpark/stodt</a>.
+      </p>
     </header>
+
     <section id="forecast" class="visible">
       <h1># DAILY POLLUTION FORECAST <input type="date" id="forecastDate" onchange="drawForecast(event)"></h1>
       <a href="#" id="forecastUrl"></a>
@@ -113,10 +128,6 @@
     <section id="history" class="visible">
       <h1># UPDATE MANUALLY</h1>
       <a href="http://localhost:5000/manual-update">http://localhost:5000/manual-update</a>
-    </section>
-    <section id="about">
-      <h1>about stodt</h1>
-      reference to repository & stuff like that
     </section>
   </main>
 
