@@ -1,5 +1,7 @@
 # STODT
 
+[![CI](https://github.com/noi-techpark/stodt/actions/workflows/ci.yml/badge.svg)](https://github.com/noi-techpark/stodt/actions/workflows/ci.yml)
+
 ## Purpose
 
 The aim of this project is to provide a tool capable to analyze historical traffic and environmental data to predict pollution levels in the city of Bolzano-Bozen. The purpose of this tool is to provide a simplified overview that shows the best moment(s) to go out and do physical activity to its users.
