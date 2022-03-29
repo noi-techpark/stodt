@@ -36,7 +36,7 @@ jobs:
           X_DOCKER_IMAGE: ${{ env.DOCKER_IMAGE }}
           X_DOCKER_TAG: ${{ env.DOCKER_TAG }}
           X_SERVER_PORT: 1040
-		      X_HOST: "https://stodt.davinci.testingmachine.eu"
+          X_HOST: "https://stodt.davinci.testingmachine.eu"
 
       - name: Build and push 
         uses: noi-techpark/github-actions/docker-build-and-push@v2
@@ -71,7 +71,7 @@ jobs:
           X_DOCKER_IMAGE: ${{ env.DOCKER_IMAGE }}
           X_DOCKER_TAG: ${{ env.DOCKER_TAG }}
           X_SERVER_PORT: 1040
-		      X_HOST: "https://stodt.davinci.bz.it"
+          X_HOST: "https://stodt.davinci.bz.it"
 
       - name: Build and push 
         uses: noi-techpark/github-actions/docker-build-and-push@v2
