@@ -14,12 +14,6 @@ RUN apt-get install -y cron
 # DEV stage ###################################################################
 FROM base AS dev
 
-ARG JENKINS_GROUP_ID=1000
-ARG JENKINS_USER_ID=1000
-
-RUN groupadd --gid $JENKINS_GROUP_ID jenkins && \
-    useradd --uid $JENKINS_USER_ID --gid $JENKINS_GROUP_ID --create-home jenkins
-
 # Not for BASE, because we do not need maven package caches for production
 CMD [ "python" ]
 
