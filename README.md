@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+
+SPDX-License-Identifier: CC0-1.0
+-->
+
 # STODT
 
 [![CI/CD](https://github.com/noi-techpark/stodt/actions/workflows/main.yml/badge.svg)](https://github.com/noi-techpark/stodt/actions/workflows/main.yml)

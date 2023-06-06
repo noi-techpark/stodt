@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 from tensorflow.keras import callbacks
 from datetime import datetime
 
