@@ -3,6 +3,6 @@ Upstream-Name: stodt
 Upstream-Contact: NOI Techpark <digital@noi.bz.it>
 Source: https://github.com/noi-techpark/stodt
 
-Files: .github/* infrastructure .gitignore LICENSE.md .env.example .editorconfig config.json requirements run www/efre-fesr-logo.jpg weights/*
+Files: .github/* infrastructure .gitignore .pre-commit-config.yaml LICENSE.md .env.example .editorconfig config.json requirements run www/efre-fesr-logo.jpg weights/*
 Copyright: (c) NOI Techpark <digital@noi.bz.it>
 License: CC0-1.0
