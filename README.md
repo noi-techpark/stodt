@@ -15,7 +15,7 @@ The aim of this project is to provide a tool capable to analyze historical traff
 
 ## Data Analysis
 
-The data used to train the model is taken from [Bolzano's Open Data Hub](https://opendatahub.bz.it/).
+The data used to train the model is taken from [Bolzano's Open Data Hub](https://opendatahub.com/).
 
 The datasets (or **categories**) analyzed are the following:
 
