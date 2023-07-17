@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC0-1.0
 
 # STODT
 
-![REUSE Compliance](https://github.com/noi-techpark/stodt/actions/workflows/reuse.yml/badge.svg)
+[![REUSE Compliance](https://github.com/noi-techpark/stodt/actions/workflows/reuse.yml/badge.svg)](https://github.com/noi-techpark/odh-docs/wiki/REUSE#badges)
 [![CI/CD](https://github.com/noi-techpark/stodt/actions/workflows/main.yml/badge.svg)](https://github.com/noi-techpark/stodt/actions/workflows/main.yml)
 
 ## Purpose
